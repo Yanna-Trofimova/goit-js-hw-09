@@ -10,8 +10,8 @@ const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
 const secondsEl = document.querySelector('[data-seconds]');
 
-buttonStart.setAttribute('disabled', 'disabled');
-// buttonStart.disabled = true;
+// buttonStart.setAttribute('disabled', 'disabled');
+buttonStart.disabled = true;
 
 
 // function disableBtn() {
@@ -29,8 +29,8 @@ const options = {
         window.alert('Please choose a date in the future');
       } else {
           options.defaultDate = selectedDates[0];
-        buttonStart.removeAttribute('disabled');
-        // buttonStart.disabled = false;
+        // buttonStart.removeAttribute('disabled');
+        buttonStart.disabled = false;
     }
   },
 };
@@ -47,8 +47,9 @@ buttonStart.addEventListener('click', startTimer);
 
 function startTimer() {
     setInterval(convertMs, 1000);
-    buttonStart.setAttribute('disabled', 'disabled');
-    // buttonStart.disabled = true;
+    // buttonStart.setAttribute('disabled', 'disabled');
+    buttonStart.disabled = true;
+
 }
 
 
@@ -62,9 +63,12 @@ function convertMs() {
     const seconds = (Math.floor((ms / 1000) % 60));
     
     
-    daysEl.textContent = days;
-    hoursEl.textContent = hours;
-    minutesEl.textContent = minutes;
-    secondsEl.textContent = seconds;
+    daysEl.textContent = addLeadingZero(days);
+    hoursEl.textContent = addLeadingZero(hours);
+    minutesEl.textContent = addLeadingZero(minutes);
+    secondsEl.textContent = addLeadingZero(seconds);
 }
 
+function addLeadingZero(value) {
+    return String(value).padStart(2, '0');
+};

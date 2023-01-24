@@ -72,3 +72,8 @@ width: 200px;
     border-radius: 10px;
   
 }
+
+.btn-data:disabled{
+  background-color: gray;
+  cursor: not-allowed;
+}
