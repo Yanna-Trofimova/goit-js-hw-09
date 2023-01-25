@@ -2,7 +2,7 @@
 
 
 const btnCreatePromise = document.querySelector('.btn-create');
-const delay = document.querySelector('.delay');
+const delayEl = document.querySelector('.delay');
 const step = document.querySelector('.step');
 const amount = document.querySelector('.amount');
 
@@ -26,17 +26,18 @@ function createPromise(position, delay) {
 
   
 function onBtn(e) {
-   e.preventDefault();
+  e.preventDefault();
+  let delay = delayEl.value;
   
   for (let position = 1; position <= amount.value; position += 1) {
-    createPromise(position, delay.value)
+    createPromise(position, delay)
       .then(({ position, delay }) => {
         console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
         console.log(`❌ Rejected promise ${position} in ${delay}ms`);
       })
-    delay.value += step.value;
+    delay += step.value;
   }
 };
 

@@ -10,6 +10,8 @@ const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
 const secondsEl = document.querySelector('[data-seconds]');
 
+
+
 // buttonStart.setAttribute('disabled', 'disabled');
 buttonStart.disabled = true;
 
@@ -46,7 +48,8 @@ buttonStart.addEventListener('click', startTimer);
  
 
 function startTimer() {
-    setInterval(convertMs, 1000);
+ setInterval(convertMs, 1000);
+  
     // buttonStart.setAttribute('disabled', 'disabled');
     buttonStart.disabled = true;
 
@@ -55,7 +58,11 @@ function startTimer() {
 
 
 function convertMs() {
-    const ms =  new Date(dateInput.value) - Date.now();
+  const ms = new Date(dateInput.value) - Date.now();
+  if (ms <= 0) {
+    stopInterval();
+  }
+  
    
     const days = (Math.floor(ms / (1000 * 60 * 60 * 24)));
     const hours = (Math.floor((ms/ (1000 * 60 * 60)) % 24));
@@ -66,7 +73,9 @@ function convertMs() {
     daysEl.textContent = addLeadingZero(days);
     hoursEl.textContent = addLeadingZero(hours);
     minutesEl.textContent = addLeadingZero(minutes);
-    secondsEl.textContent = addLeadingZero(seconds);
+  secondsEl.textContent = addLeadingZero(seconds);
+  
+  
 }
 
 function addLeadingZero(value) {
